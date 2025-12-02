@@ -23,7 +23,7 @@ export async function uploadImageToDrive(file: File, token: string): Promise<str
         token: token,
         fileName: file.name,
         mimeType: file.type,
-        base64Data: base64,
+        imageData: base64,
       }),
     });
 
@@ -50,7 +50,7 @@ export async function uploadImageToDrive(file: File, token: string): Promise<str
 }
 
 /**
- * Convert File to base64 string
+ * Convert File to base64 string with data URL prefix
  */
 function fileToBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -58,9 +58,8 @@ function fileToBase64(file: File): Promise<string> {
     reader.readAsDataURL(file);
     reader.onload = () => {
       const result = reader.result as string;
-      // Remove the data:image/xxx;base64, prefix
-      const base64 = result.split(',')[1];
-      resolve(base64);
+      // Keep the data URL prefix so backend can extract MIME type
+      resolve(result);
     };
     reader.onerror = (error) => reject(error);
   });

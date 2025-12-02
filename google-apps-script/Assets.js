@@ -372,7 +372,7 @@ function deleteAsset(data) {
  * Upload image to Google Drive
  */
 function uploadImage(data) {
-  const { token, imageData, fileName, assetId } = data;
+  const { token, imageData, fileName, mimeType, assetId } = data;
   
   const decoded = verifyToken(token);
   if (!decoded) {
@@ -410,10 +410,23 @@ function uploadImage(data) {
       }
     }
     
-    // Decode base64 image
+    // Parse base64 data - handle data URL format (data:image/png;base64,...)
+    let base64String = imageData;
+    let detectedMimeType = mimeType || 'image/jpeg';
+    
+    // If it's a data URL, extract MIME type and base64
+    if (imageData && imageData.startsWith('data:')) {
+      const match = imageData.match(/^data:([^;]+);base64,(.+)$/);
+      if (match) {
+        detectedMimeType = match[1];  // Extract MIME type
+        base64String = match[2];      // Extract base64 data
+      }
+    }
+    
+    // Decode and create blob
     const blob = Utilities.newBlob(
-      Utilities.base64Decode(imageData.split(',')[1] || imageData),
-      'image/jpeg',
+      Utilities.base64Decode(base64String),
+      detectedMimeType,
       fileName
     );
     
