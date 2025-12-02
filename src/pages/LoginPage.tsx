@@ -195,15 +195,6 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
                 <span className="text-xs text-green-700">{info}</span>
               </div>
             )}
-
-            {/* Demo Credentials Info */}
-            <div className="mt-6 pt-4 border-t border-gray-200">
-              <p className="text-xs text-gray-500 text-center mb-2">Demo Credentials:</p>
-              <div className="bg-gray-50 rounded-lg p-2.5 space-y-0.5">
-                <p className="text-xs text-gray-600"><span className="font-semibold">Username:</span> admin</p>
-                <p className="text-xs text-gray-600"><span className="font-semibold">Password:</span> admin123</p>
-              </div>
-            </div>
           </div>
 
           {/* Right Side - Branding */}
