@@ -57,7 +57,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
     <div className="min-h-screen bg-gradient-to-br from-blue-500 via-blue-600 to-purple-700 flex items-center justify-center p-4" style={{ position: 'relative', zIndex: 1 }}>
       <div className="w-full max-w-5xl" style={{ position: 'relative', zIndex: 100 }}>
         {/* Card with 2 columns */}
-        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden grid md:grid-cols-2" style={{ position: 'relative', zIndex: 101 }}>
+        <div className="bg-white overflow-hidden grid md:grid-cols-2" style={{ position: 'relative', zIndex: 101 }}>
           {/* Left Side - Login Form */}
           <div className="px-8 py-8">
             <div className="mb-6">
