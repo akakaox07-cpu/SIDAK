@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import './styles/globals.css';
+import './index.css';
 import './styles/print.css';
 
 const rootElement = document.getElementById('root');
