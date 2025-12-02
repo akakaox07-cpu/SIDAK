@@ -1,0 +1,19 @@
+/* Basic print defaults */
+@media print {
+  /* Ensure white background and remove gaps */
+  html, body { background: #fff !important; }
+  .print\:hidden { display: none !important; }
+  .print\:mb-0 { margin-bottom: 0 !important; }
+  .print\:mt-0 { margin-top: 0 !important; }
+  .print\:p-0 { padding: 0 !important; }
+}
+
+/* Page helpers (screen approximation). Widths are approximations at 96dpi */
+.a4.portrait { max-width: 794px; }
+.a4.landscape { max-width: 1123px; }
+.letter.portrait { max-width: 816px; }
+.letter.landscape { max-width: 1056px; }
+
+/* Page break helpers */
+.print-break-before { break-before: page; }
+.print-break-avoid { break-inside: avoid; }
