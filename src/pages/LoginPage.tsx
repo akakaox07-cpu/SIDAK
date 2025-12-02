@@ -54,14 +54,14 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-500 via-blue-600 to-purple-700 flex items-center justify-center p-4" style={{ position: 'relative', zIndex: 1 }}>
+    <div className="min-h-screen bg-linear-to-br from-blue-500 via-blue-600 to-purple-700 flex items-center justify-center p-4" style={{ position: 'relative', zIndex: 1 }}>
       <div className="w-full max-w-5xl" style={{ position: 'relative', zIndex: 100 }}>
         {/* Card with 2 columns */}
         <div className="bg-white overflow-hidden grid md:grid-cols-2" style={{ position: 'relative', zIndex: 101 }}>
           {/* Left Side - Login Form */}
           <div className="px-8 py-8">
             <div className="mb-6">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center mb-4 shadow-lg">
+              <div className="w-16 h-16 bg-linear-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center mb-4 shadow-lg">
                 <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
@@ -74,7 +74,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
               {/* Error Message */}
               {error && (
                 <div className="bg-red-50 border border-red-200 rounded-lg px-3 py-2 flex items-start gap-2">
-                  <svg className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-4 h-4 text-red-500 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
                   </svg>
                   <span className="text-xs text-red-700">{error}</span>
@@ -168,7 +168,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-2.5 px-4 rounded-lg hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm"
+                className="w-full bg-linear-to-r from-blue-600 to-purple-600 text-white font-semibold py-2.5 px-4 rounded-lg hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm"
               >
                 {isLoading ? (
                   <>
@@ -198,7 +198,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
           </div>
 
           {/* Right Side - Branding */}
-          <div className="hidden md:flex bg-gradient-to-br from-blue-600 via-blue-700 to-purple-700 p-12 flex-col justify-center items-center text-white relative overflow-hidden">
+          <div className="hidden md:flex bg-linear-to-br from-blue-600 via-blue-700 to-purple-700 p-12 flex-col justify-center items-center text-white relative overflow-hidden">
             {/* Decorative circles */}
             <div className="absolute top-10 right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
             <div className="absolute bottom-10 left-10 w-40 h-40 bg-purple-400/20 rounded-full blur-3xl"></div>
@@ -228,19 +228,19 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
               {/* Features */}
               <div className="space-y-3 mt-8">
                 <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
-                  <svg className="w-5 h-5 text-blue-200 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-blue-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <span className="text-sm">Manajemen Aset Terintegrasi</span>
                 </div>
                 <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
-                  <svg className="w-5 h-5 text-blue-200 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-blue-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <span className="text-sm">Dokumentasi Digital</span>
                 </div>
                 <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
-                  <svg className="w-5 h-5 text-blue-200 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-blue-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <span className="text-sm">Laporan Real-time</span>
@@ -321,3 +321,4 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
 };
 
 export default LoginPage;
+

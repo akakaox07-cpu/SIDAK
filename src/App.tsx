@@ -29,7 +29,7 @@ const Toast: React.FC<{ message: string; type: 'success' | 'error' | 'info'; onC
   };
 
   return (
-    <div className="fixed top-4 right-4 z-[10001] animate-slide-in-right">
+    <div className="fixed top-4 right-4 z-10001 animate-slide-in-right">
       <div className={`${bgColors[type]} text-white px-6 py-4 rounded-lg shadow-2xl flex items-center gap-3 min-w-[300px]`}>
         <span className="text-xl font-bold">{icons[type]}</span>
         <p className="flex-1 font-medium">{message}</p>
@@ -44,7 +44,7 @@ const LoadingOverlay: React.FC<{ isVisible: boolean; message?: string }> = ({ is
   if (!isVisible) return null;
   
   return (
-    <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/50 backdrop-blur-sm animate-fade-in">
+    <div className="fixed inset-0 z-10000 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-fade-in">
       <div className="bg-white rounded-xl shadow-2xl p-8 flex flex-col items-center gap-4 animate-scale-in">
         <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
         <p className="text-gray-700 font-medium text-lg">{message}</p>
@@ -79,7 +79,7 @@ const ConfirmDialog: React.FC<{
   };
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 animate-fade-in">
+    <div className="fixed inset-0 z-9999 flex items-center justify-center p-4 animate-fade-in">
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onCancel}></div>
       <div className="relative bg-white rounded-xl shadow-2xl max-w-md w-full animate-scale-in">
         <div className={`px-6 py-4 rounded-t-xl ${colorClasses[type]}`}>
