@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Asset } from '@/types';
 import { MapViewer } from '@/components/ui';
 import QRCode from 'qrcode';
+import { formatDate } from '@/lib';
 import { Maximize2, Minimize2 } from 'lucide-react';
 
 interface Props {
@@ -338,15 +339,15 @@ const AssetDetailPage: React.FC<Props> = ({ asset, onBack, onEdit, canEdit }) =>
                     <Row label="Alamat" value={asset.alamat} />
                     <Row label="Status Hak Tanah" value={asset.statusHakTanah} />
                     <Row label="Status Tanah" value={asset.statusTanah} />
-                    <Row label="Tanggal Sertifikat" value={asset.tanggalSertifikat} />
+                    <Row label="Tanggal Sertifikat" value={formatDate(asset.tanggalSertifikat)} />
                     <Row label="No. Sertifikat" value={asset.nomorSertifikat} />
                     <Row label="Penggunaan" value={asset.penggunaan} />
                     <Row label="Asal Usul" value={asset.asalUsul} />
                     <Row label="Kondisi" value={asset.kondisi} />
                     <Row label="Status Barang" value={asset.statusBarang} />
-                    <Row label="Tgl. Buku" value={asset.tglBuku} />
+                    <Row label="Tgl. Buku" value={formatDate(asset.tglBuku)} />
                     <Row label="No. BAST" value={asset.noBAST} />
-                    <Row label="Tgl. BAST" value={asset.tglBAST} />
+                    <Row label="Tgl. BAST" value={formatDate(asset.tglBAST)} />
                     <Row label="ID Penerimaan" value={asset.idPenerimaan} />
                     <Row label="Status Aset" value={asset.statusAset} />
                     <Row label="Harga" value={asset.harga ? `Rp ${asset.harga.toLocaleString('id-ID')}` : undefined} />
@@ -362,7 +363,7 @@ const AssetDetailPage: React.FC<Props> = ({ asset, onBack, onEdit, canEdit }) =>
                     <Row label="Beton" value={asset.beton} />
                     <Row label="Luas Bangunan" value={asset.luasBangunan ? `${asset.luasBangunan} m²` : undefined} />
                     <Row label="Alamat" value={asset.alamat} />
-                    <Row label="Tanggal Dokumen" value={asset.tanggalDokumen} />
+                    <Row label="Tanggal Dokumen" value={formatDate(asset.tanggalDokumen)} />
                     <Row label="No. Dokumen" value={asset.nomorDokumen} />
                     <Row label="Luas Tanah" value={asset.luasTanah ? `${asset.luasTanah} m²` : undefined} />
                     <Row label="Status Tanah" value={asset.statusTanah} />

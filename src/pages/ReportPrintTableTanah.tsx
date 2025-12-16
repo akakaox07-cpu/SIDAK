@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { Asset } from '@/types';
 import { PrintIcon, SettingsIcon } from '@/components/ui';
+import { formatDate } from '@/lib';
 
 interface Props { assets: Asset[] }
 
@@ -123,7 +124,7 @@ const ReportPrintTableTanah: React.FC<Props> = ({ assets }) => {
                   <td className="border border-gray-400 px-1 py-1 text-center">{a.tahunPerolehan || '-'}</td>
                   <td className="border border-gray-400 px-2 py-1">{a.alamat || '-'}</td>
                   <td className="border border-gray-400 px-2 py-1">{a.statusHakTanah || '-'}</td>
-                  <td className="border border-gray-400 px-1 py-1 text-center">{a.tanggalSertifikat || '-'}</td>
+                  <td className="border border-gray-400 px-1 py-1 text-center">{formatDate(a.tanggalSertifikat)}</td>
                   <td className="border border-gray-400 px-2 py-1">{a.nomorSertifikat || '-'}</td>
                   <td className="border border-gray-400 px-2 py-1">{a.penggunaan || '-'}</td>
                   <td className="border border-gray-400 px-2 py-1">{a.asalUsul || '-'}</td>
