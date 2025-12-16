@@ -81,11 +81,39 @@ const AssetDetailPage: React.FC<Props> = ({ asset, onBack, onEdit, canEdit }) =>
   }, [asset.id]);
 
   useEffect(() => {
-    const text = `ASSET|ID:${asset.id}|NAMA:${asset.namaBarang}|JENIS:${asset.jenisInventaris}`;
+    // Enhanced QR Info with more details
+    const qrData = [
+      `ID: ${asset.id}`,
+      `NAMA: ${asset.namaBarang}`,
+      `JENIS: ${asset.jenisInventaris}`,
+      `KODE: ${asset.noKodeBarang || asset.kodeBarang || '-'}`,
+      `UNIT: ${asset.unit}`,
+    ];
+    
+    // Add specific fields based on asset type
+    if (asset.jenisInventaris?.toLowerCase() === 'tanah') {
+      if (asset.luasTanah) qrData.push(`LUAS: ${asset.luasTanah} m²`);
+      if (asset.alamat) qrData.push(`ALAMAT: ${asset.alamat}`);
+      if (asset.statusHakTanah) qrData.push(`HAK: ${asset.statusHakTanah}`);
+      if (asset.nomorSertifikat) qrData.push(`SERTIFIKAT: ${asset.nomorSertifikat}`);
+    } else if (asset.jenisInventaris?.toLowerCase() === 'bangunan') {
+      if (asset.luasBangunan) qrData.push(`LUAS BANGUNAN: ${asset.luasBangunan} m²`);
+      if (asset.alamat) qrData.push(`ALAMAT: ${asset.alamat}`);
+      if (asset.kondisi) qrData.push(`KONDISI: ${asset.kondisi}`);
+      if (asset.bertingkat) qrData.push(`TINGKAT: ${asset.bertingkat}`);
+    } else {
+      // Item/Barang
+      if (asset.merkModel) qrData.push(`MERK: ${asset.merkModel}`);
+      if (asset.noSeriPabrik) qrData.push(`NO.SERI: ${asset.noSeriPabrik}`);
+      if (asset.ruangan) qrData.push(`RUANGAN: ${asset.ruangan}`);
+      if (asset.keadaanBarang) qrData.push(`KONDISI: ${asset.keadaanBarang}`);
+    }
+    
+    const text = qrData.join('|');
     QRCode.toDataURL(text, { scale: 6, margin: 1 })
       .then(setQrInfoUrl)
       .catch(() => setQrInfoUrl(null));
-  }, [asset.id, asset.namaBarang, asset.jenisInventaris]);
+  }, [asset]);
 
   useEffect(() => {
     QRCode.toDataURL(detailUrl, { scale: 6, margin: 1 })
@@ -239,6 +267,7 @@ const AssetDetailPage: React.FC<Props> = ({ asset, onBack, onEdit, canEdit }) =>
                 <div className="font-medium">{asset.namaBarang}</div>
                 {asset.merkModel && <div className="text-gray-500">{asset.merkModel}</div>}
                 <div className="text-gray-500 mt-1">ID: {asset.id}</div>
+                {asset.jenisInventaris && <div className="text-blue-600 mt-1">{asset.jenisInventaris}</div>}
               </div>
               <button
                 onClick={() => {
