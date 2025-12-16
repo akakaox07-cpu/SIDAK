@@ -255,29 +255,6 @@ const AssetDetailPage: React.FC<Props> = ({ asset, onBack, onEdit, canEdit }) =>
               >Cetak A4</button>
             </div>
 
-            {/* QR Info Aset */}
-            <div className="mt-4 w-full p-4 border rounded-lg bg-gray-50 flex flex-col items-center gap-2">
-              <div className="text-xs font-medium text-gray-600">QR Info Aset</div>
-              {qrInfoUrl ? (
-                <img src={qrInfoUrl} alt="QR Info Aset" className="w-32 h-32" />
-              ) : (
-                <div className="w-32 h-32 flex items-center justify-center text-[10px] text-gray-400">QR tidak tersedia</div>
-              )}
-              <div className="text-xs text-center text-gray-600 mt-1 px-2">
-                <div className="font-medium">{asset.namaBarang}</div>
-                {asset.merkModel && <div className="text-gray-500">{asset.merkModel}</div>}
-                <div className="text-gray-500 mt-1">ID: {asset.id}</div>
-                {asset.jenisInventaris && <div className="text-blue-600 mt-1">{asset.jenisInventaris}</div>}
-              </div>
-              <button
-                onClick={() => {
-                  const label = asset.merkModel ? `${asset.namaBarang}\n${asset.merkModel}` : asset.namaBarang;
-                  downloadQrWithLabel(qrInfoUrl, label, `QR-Info-${asset.namaBarang}.png`);
-                }}
-                className="px-3 py-1.5 text-xs rounded bg-white border hover:bg-gray-100"
-              >Unduh QR Info</button>
-            </div>
-
             {/* Alamat (untuk Tanah dan Bangunan) */}
             {(asset.jenisInventaris?.toLowerCase() === 'tanah' || asset.jenisInventaris?.toLowerCase() === 'bangunan') && asset.alamat && (
               <div className="mt-4 p-4 border rounded-lg bg-blue-50">
@@ -305,6 +282,29 @@ const AssetDetailPage: React.FC<Props> = ({ asset, onBack, onEdit, canEdit }) =>
 
           {/* Details */}
           <div className="md:col-span-2">
+            {/* QR Info Aset */}
+            <div className="mb-4 w-full p-4 border rounded-lg bg-gray-50 flex flex-col items-center gap-2">
+              <div className="text-xs font-medium text-gray-600">QR Info Aset</div>
+              {qrInfoUrl ? (
+                <img src={qrInfoUrl} alt="QR Info Aset" className="w-32 h-32" />
+              ) : (
+                <div className="w-32 h-32 flex items-center justify-center text-[10px] text-gray-400">QR tidak tersedia</div>
+              )}
+              <div className="text-xs text-center text-gray-600 mt-1 px-2">
+                <div className="font-medium">{asset.namaBarang}</div>
+                {asset.merkModel && <div className="text-gray-500">{asset.merkModel}</div>}
+                <div className="text-gray-500 mt-1">ID: {asset.id}</div>
+                {asset.jenisInventaris && <div className="text-blue-600 mt-1">{asset.jenisInventaris}</div>}
+              </div>
+              <button
+                onClick={() => {
+                  const label = asset.merkModel ? `${asset.namaBarang}\n${asset.merkModel}` : asset.namaBarang;
+                  downloadQrWithLabel(qrInfoUrl, label, `QR-Info-${asset.namaBarang}.png`);
+                }}
+                className="px-3 py-1.5 text-xs rounded bg-white border hover:bg-gray-100"
+              >Unduh QR Info</button>
+            </div>
+
             <div className="text-lg font-semibold mb-1">{asset.namaBarang}</div>
             <div className="text-sm text-gray-500 mb-4">{asset.jenisInventaris} • {asset.unit}</div>
 
