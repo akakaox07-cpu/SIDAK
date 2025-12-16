@@ -95,19 +95,22 @@ const ReportPrintTableBangunan: React.FC<Props> = ({ assets }) => {
               <tr className="bg-gray-100">
                 <th rowSpan={2} className="border border-gray-400 px-1 py-2 w-8">No</th>
                 <th rowSpan={2} className="border border-gray-400 px-2 py-2">Kode</th>
+                <th rowSpan={2} className="border border-gray-400 px-1 py-2">Reg</th>
                 <th rowSpan={2} className="border border-gray-400 px-2 py-2">Nama Bangunan</th>
-                <th colSpan={3} className="border border-gray-400 px-2 py-1">Kondisi Bangunan</th>
+                <th colSpan={3} className="border border-gray-400 px-2 py-1">Kondisi</th>
                 <th rowSpan={2} className="border border-gray-400 px-2 py-2">Luas<br/>(m²)</th>
-                <th colSpan={2} className="border border-gray-400 px-2 py-1">Lokasi</th>
-                <th colSpan={2} className="border border-gray-400 px-2 py-1">Lainnya</th>
+                <th colSpan={3} className="border border-gray-400 px-2 py-1">Lokasi</th>
+                <th colSpan={3} className="border border-gray-400 px-2 py-1">Dokumen & Lainnya</th>
               </tr>
               <tr className="bg-gray-100">
-                <th className="border border-gray-400 px-1 py-1">Kondisi</th>
+                <th className="border border-gray-400 px-1 py-1">Kond</th>
                 <th className="border border-gray-400 px-1 py-1">Tkt</th>
                 <th className="border border-gray-400 px-1 py-1">Btn</th>
                 <th className="border border-gray-400 px-2 py-1">Alamat</th>
                 <th className="border border-gray-400 px-1 py-1">Thn</th>
-                <th className="border border-gray-400 px-2 py-1">No. Dok</th>
+                <th className="border border-gray-400 px-1 py-1">Tgl.Dok</th>
+                <th className="border border-gray-400 px-2 py-1">No.Dok</th>
+                <th className="border border-gray-400 px-2 py-1">Asal Usul</th>
                 <th className="border border-gray-400 px-2 py-1">Harga (Rp)</th>
               </tr>
             </thead>
@@ -116,6 +119,7 @@ const ReportPrintTableBangunan: React.FC<Props> = ({ assets }) => {
                 <tr key={a.id} className="hover:bg-gray-50">
                   <td className="border border-gray-400 px-1 py-1 text-center">{idx + 1}</td>
                   <td className="border border-gray-400 px-2 py-1">{a.kodeBarang || a.noKodeBarang || '-'}</td>
+                  <td className="border border-gray-400 px-1 py-1">{a.register || '-'}</td>
                   <td className="border border-gray-400 px-2 py-1">{a.namaBarang}</td>
                   <td className="border border-gray-400 px-1 py-1">{a.kondisi || '-'}</td>
                   <td className="border border-gray-400 px-1 py-1 text-center">{a.bertingkat || '-'}</td>
@@ -123,7 +127,9 @@ const ReportPrintTableBangunan: React.FC<Props> = ({ assets }) => {
                   <td className="border border-gray-400 px-2 py-1 text-right">{a.luasBangunan ? a.luasBangunan.toLocaleString('id-ID') : '-'}</td>
                   <td className="border border-gray-400 px-2 py-1">{a.alamat || '-'}</td>
                   <td className="border border-gray-400 px-1 py-1 text-center">{a.tahunPerolehan || '-'}</td>
+                  <td className="border border-gray-400 px-1 py-1 text-center">{a.tanggalDokumen || '-'}</td>
                   <td className="border border-gray-400 px-2 py-1">{a.nomorDokumen || '-'}</td>
+                  <td className="border border-gray-400 px-2 py-1">{a.asalUsul || '-'}</td>
                   <td className="border border-gray-400 px-2 py-1 text-right">{a.harga ? a.harga.toLocaleString('id-ID') : '-'}</td>
                 </tr>
               ))}

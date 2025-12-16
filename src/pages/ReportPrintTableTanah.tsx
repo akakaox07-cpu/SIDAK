@@ -95,17 +95,20 @@ const ReportPrintTableTanah: React.FC<Props> = ({ assets }) => {
               <tr className="bg-gray-100">
                 <th rowSpan={2} className="border border-gray-400 px-1 py-2 w-8">No</th>
                 <th rowSpan={2} className="border border-gray-400 px-2 py-2">Kode</th>
+                <th rowSpan={2} className="border border-gray-400 px-1 py-2">Reg</th>
                 <th rowSpan={2} className="border border-gray-400 px-2 py-2">Nama Tanah</th>
                 <th rowSpan={2} className="border border-gray-400 px-2 py-2">Luas<br/>(m²)</th>
                 <th rowSpan={2} className="border border-gray-400 px-1 py-2">Thn</th>
-                <th colSpan={3} className="border border-gray-400 px-2 py-1">Lokasi & Sertifikat</th>
-                <th colSpan={2} className="border border-gray-400 px-2 py-1">Lainnya</th>
+                <th colSpan={4} className="border border-gray-400 px-2 py-1">Lokasi & Sertifikat</th>
+                <th colSpan={3} className="border border-gray-400 px-2 py-1">Lainnya</th>
               </tr>
               <tr className="bg-gray-100">
                 <th className="border border-gray-400 px-2 py-1">Alamat</th>
                 <th className="border border-gray-400 px-2 py-1">Hak</th>
-                <th className="border border-gray-400 px-2 py-1">No. Sertifikat</th>
+                <th className="border border-gray-400 px-1 py-1">Tgl.Sert</th>
+                <th className="border border-gray-400 px-2 py-1">No.Sert</th>
                 <th className="border border-gray-400 px-2 py-1">Penggunaan</th>
+                <th className="border border-gray-400 px-2 py-1">Asal Usul</th>
                 <th className="border border-gray-400 px-2 py-1">Harga (Rp)</th>
               </tr>
             </thead>
@@ -114,13 +117,16 @@ const ReportPrintTableTanah: React.FC<Props> = ({ assets }) => {
                 <tr key={a.id} className="hover:bg-gray-50">
                   <td className="border border-gray-400 px-1 py-1 text-center">{idx + 1}</td>
                   <td className="border border-gray-400 px-2 py-1">{a.kodeBarang || a.noKodeBarang || '-'}</td>
+                  <td className="border border-gray-400 px-1 py-1">{a.register || '-'}</td>
                   <td className="border border-gray-400 px-2 py-1">{a.namaBarang}</td>
                   <td className="border border-gray-400 px-2 py-1 text-right">{a.luasTanah ? a.luasTanah.toLocaleString('id-ID') : '-'}</td>
                   <td className="border border-gray-400 px-1 py-1 text-center">{a.tahunPerolehan || '-'}</td>
                   <td className="border border-gray-400 px-2 py-1">{a.alamat || '-'}</td>
                   <td className="border border-gray-400 px-2 py-1">{a.statusHakTanah || '-'}</td>
+                  <td className="border border-gray-400 px-1 py-1 text-center">{a.tanggalSertifikat || '-'}</td>
                   <td className="border border-gray-400 px-2 py-1">{a.nomorSertifikat || '-'}</td>
                   <td className="border border-gray-400 px-2 py-1">{a.penggunaan || '-'}</td>
+                  <td className="border border-gray-400 px-2 py-1">{a.asalUsul || '-'}</td>
                   <td className="border border-gray-400 px-2 py-1 text-right">{a.harga ? a.harga.toLocaleString('id-ID') : '-'}</td>
                 </tr>
               ))}
