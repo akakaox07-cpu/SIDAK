@@ -83,36 +83,82 @@ const AssetDetailPage: React.FC<Props> = ({ asset, onBack, onEdit, canEdit }) =>
   }, [asset.id]);
 
   useEffect(() => {
-    // Enhanced QR Info with more details
-    const qrData = [
-      `ID: ${asset.id}`,
-      `NAMA: ${asset.namaBarang}`,
-      `JENIS: ${asset.jenisInventaris}`,
+    // Enhanced QR Info with more details - formatted for readability
+    const qrLines = [
+      `━━━━━━━━━━━━━━━━━━━━━━`,
+      `SIDAK - KELURAHAN BABAKAN`,
+      `━━━━━━━━━━━━━━━━━━━━━━`,
+      ``,
+      `NAMA ASET:`,
+      `${asset.namaBarang}`,
+      ``,
       `KODE: ${asset.noKodeBarang || asset.kodeBarang || '-'}`,
+      `JENIS: ${asset.jenisInventaris}`,
       `UNIT: ${asset.unit}`,
     ];
     
     // Add specific fields based on asset type
     if (asset.jenisInventaris?.toLowerCase() === 'tanah') {
-      if (asset.luasTanah) qrData.push(`LUAS: ${asset.luasTanah} m²`);
-      if (asset.alamat) qrData.push(`ALAMAT: ${asset.alamat}`);
-      if (asset.statusHakTanah) qrData.push(`HAK: ${asset.statusHakTanah}`);
-      if (asset.nomorSertifikat) qrData.push(`SERTIFIKAT: ${asset.nomorSertifikat}`);
+      qrLines.push(``);
+      qrLines.push(`DETAIL TANAH:`);
+      if (asset.luasTanah) qrLines.push(`• Luas: ${asset.luasTanah} m²`);
+      if (asset.statusHakTanah) qrLines.push(`• Hak: ${asset.statusHakTanah}`);
+      if (asset.nomorSertifikat) qrLines.push(`• Sertifikat: ${asset.nomorSertifikat}`);
+      if (asset.alamat) {
+        qrLines.push(``);
+        qrLines.push(`LOKASI:`);
+        qrLines.push(`${asset.alamat}`);
+      }
     } else if (asset.jenisInventaris?.toLowerCase() === 'bangunan') {
-      if (asset.luasBangunan) qrData.push(`LUAS BANGUNAN: ${asset.luasBangunan} m²`);
-      if (asset.alamat) qrData.push(`ALAMAT: ${asset.alamat}`);
-      if (asset.kondisi) qrData.push(`KONDISI: ${asset.kondisi}`);
-      if (asset.bertingkat) qrData.push(`TINGKAT: ${asset.bertingkat}`);
+      qrLines.push(``);
+      qrLines.push(`DETAIL BANGUNAN:`);
+      if (asset.luasBangunan) qrLines.push(`• Luas: ${asset.luasBangunan} m²`);
+      if (asset.kondisi) qrLines.push(`• Kondisi: ${asset.kondisi}`);
+      if (asset.bertingkat) qrLines.push(`• Tingkat: ${asset.bertingkat}`);
+      if (asset.beton) qrLines.push(`• Beton: ${asset.beton}`);
+      if (asset.alamat) {
+        qrLines.push(``);
+        qrLines.push(`LOKASI:`);
+        qrLines.push(`${asset.alamat}`);
+      }
     } else {
       // Item/Barang
-      if (asset.merkModel) qrData.push(`MERK: ${asset.merkModel}`);
-      if (asset.noSeriPabrik) qrData.push(`NO.SERI: ${asset.noSeriPabrik}`);
-      if (asset.ruangan) qrData.push(`RUANGAN: ${asset.ruangan}`);
-      if (asset.keadaanBarang) qrData.push(`KONDISI: ${asset.keadaanBarang}`);
+      qrLines.push(``);
+      qrLines.push(`DETAIL BARANG:`);
+      if (asset.merkModel) qrLines.push(`• Merk: ${asset.merkModel}`);
+      if (asset.noSeriPabrik) qrLines.push(`• No.Seri: ${asset.noSeriPabrik}`);
+      if (asset.ukuran) qrLines.push(`• Ukuran: ${asset.ukuran}`);
+      if (asset.bahan) qrLines.push(`• Bahan: ${asset.bahan}`);
+      if (asset.jumlahBarang) qrLines.push(`• Jumlah: ${asset.jumlahBarang}`);
+      if (asset.keadaanBarang) qrLines.push(`• Kondisi: ${asset.keadaanBarang}`);
+      if (asset.ruangan) {
+        qrLines.push(``);
+        qrLines.push(`LOKASI:`);
+        qrLines.push(`${asset.ruangan}`);
+      }
     }
     
-    const text = qrData.join('|');
-    QRCode.toDataURL(text, { scale: 6, margin: 1 })
+    // Add common fields
+    if (asset.tahunPerolehan || asset.tahunPembuatan) {
+      qrLines.push(``);
+      qrLines.push(`TAHUN: ${asset.tahunPerolehan || asset.tahunPembuatan}`);
+    }
+    
+    if (asset.harga || asset.hargaBeli) {
+      const hargaValue = asset.harga || asset.hargaBeli;
+      qrLines.push(`HARGA: Rp ${hargaValue.toLocaleString('id-ID')}`);
+    }
+    
+    qrLines.push(``);
+    qrLines.push(`━━━━━━━━━━━━━━━━━━━━━━`);
+    qrLines.push(`ID: ${asset.id}`);
+    
+    const text = qrLines.join('\n');
+    QRCode.toDataURL(text, { 
+      scale: 8, 
+      margin: 2,
+      errorCorrectionLevel: 'M' 
+    })
       .then(setQrInfoUrl)
       .catch(() => setQrInfoUrl(null));
   }, [asset]);
