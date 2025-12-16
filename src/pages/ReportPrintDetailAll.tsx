@@ -19,6 +19,7 @@ const AssetDetailCard: React.FC<{
   onImageLoad: () => void;
 }> = ({ asset, index, signLeft, signRight, onImageLoad }) => {
   const [qrLink, setQrLink] = useState<string | null>(null);
+  const [imageHandled, setImageHandled] = useState(false);
 
   useEffect(() => {
     // Generate QR Link (detail page link)
@@ -55,6 +56,14 @@ const AssetDetailCard: React.FC<{
       : url;
   }, [asset.photos]);
 
+  // Call onImageLoad if no image
+  useEffect(() => {
+    if (!imageUrl && !imageHandled) {
+      setImageHandled(true);
+      onImageLoad();
+    }
+  }, [imageUrl, imageHandled, onImageLoad]);
+
   const koordinat = asset.latitude && asset.longitude ? `${asset.latitude}, ${asset.longitude}` : '-';
   const jenis = asset.jenisInventaris || '-';
   const tanggalCetak = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -74,8 +83,21 @@ const AssetDetailCard: React.FC<{
               alt={asset.namaBarang} 
               className="absolute inset-0 w-full h-full object-cover"
               referrerPolicy="no-referrer"
-              onLoad={onImageLoad}
-              onError={onImageLoad}
+              crossOrigin="anonymous"
+              onLoad={() => {
+                console.log('Image loaded:', asset.namaBarang);
+                if (!imageHandled) {
+                  setImageHandled(true);
+                  onImageLoad();
+                }
+              }}
+              onError={(e) => {
+                console.log('Image error:', asset.namaBarang);
+                if (!imageHandled) {
+                  setImageHandled(true);
+                  onImageLoad();
+                }
+              }}
             />
           ) : (
             <div className="flex items-center justify-center h-full">
@@ -192,6 +214,18 @@ const ReportPrintDetailAll: React.FC<Props> = ({ assets }) => {
       setReadyToPrint(true);
     }
   }, [loadedImages, assets.length]);
+
+  // Auto ready after timeout to prevent infinite loading
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!readyToPrint) {
+        console.log('Timeout reached, forcing ready state');
+        setReadyToPrint(true);
+      }
+    }, 5000); // 5 second timeout
+
+    return () => clearTimeout(timer);
+  }, [readyToPrint]);
 
   // Auto ready if no images
   useEffect(() => {
