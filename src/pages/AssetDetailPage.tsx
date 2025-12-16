@@ -312,7 +312,12 @@ const AssetDetailPage: React.FC<Props> = ({ asset, onBack, onEdit, canEdit }) =>
               <div className="p-4">
                 <Row label="Kode Barang" value={asset.noKodeBarang || asset.kodeBarang} />
                 <Row label="Tahun" value={asset.tahunPembuatan || asset.tahunPerolehan} />
-                <Row label="Jumlah" value={asset.jumlahBarang} />
+                
+                {/* Jumlah only for Barang (not Tanah/Bangunan) */}
+                {asset.jenisInventaris?.toLowerCase() !== 'tanah' && asset.jenisInventaris?.toLowerCase() !== 'bangunan' && (
+                  <Row label="Jumlah" value={asset.jumlahBarang} />
+                )}
+                
                 <Row label="Harga Beli" value={asset.hargaBeli || asset.harga} />
                 <Row label="Keadaan" value={asset.keadaanBarang} />
                 <Row label="Lokasi/Ruangan" value={asset.ruangan || asset.alamat} />
