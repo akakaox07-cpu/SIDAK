@@ -94,23 +94,23 @@ const ReportPrintTableBarang: React.FC<Props> = ({ assets }) => {
   <div className="text-center text-xs text-gray-600 mb-4">Dicetak: {tanggalCetak}</div>
         
         <div className="overflow-x-auto mb-6">
-          <table className="w-full text-[10px] border-collapse border border-gray-400">
+          <table className="w-full text-[9px] border-collapse border border-gray-400">
             <thead>
               <tr className="bg-gray-100">
-                <th className="border border-gray-400 px-2 py-2">No</th>
-                <th className="border border-gray-400 px-2 py-2">Kode Barang</th>
+                <th className="border border-gray-400 px-1 py-2 w-8">No</th>
+                <th className="border border-gray-400 px-2 py-2">Kode</th>
                 <th className="border border-gray-400 px-2 py-2">Nama Barang</th>
                 <th className="border border-gray-400 px-2 py-2">Jenis</th>
-                <th className="border border-gray-400 px-2 py-2">Merk/Model</th>
-                <th className="border border-gray-400 px-2 py-2">No. Seri</th>
-                <th className="border border-gray-400 px-2 py-2">Ukuran</th>
+                <th className="border border-gray-400 px-2 py-2">Merk</th>
+                <th className="border border-gray-400 px-1 py-2">No. Seri</th>
+                <th className="border border-gray-400 px-1 py-2">Ukuran</th>
                 <th className="border border-gray-400 px-2 py-2">Bahan</th>
-                <th className="border border-gray-400 px-2 py-2">Tahun</th>
-                <th className="border border-gray-400 px-2 py-2">Jumlah</th>
-                <th className="border border-gray-400 px-2 py-2">Harga Beli (Rp)</th>
+                <th className="border border-gray-400 px-1 py-2">Thn</th>
+                <th className="border border-gray-400 px-1 py-2">Jml</th>
+                <th className="border border-gray-400 px-2 py-2">Harga (Rp)</th>
                 <th className="border border-gray-400 px-2 py-2">Ruangan</th>
                 <th className="border border-gray-400 px-2 py-2">Keadaan</th>
-                <th className="border border-gray-400 px-2 py-2">Keterangan</th>
+                <th className="border border-gray-400 px-2 py-2">Ket</th>
               </tr>
             </thead>
             <tbody>
