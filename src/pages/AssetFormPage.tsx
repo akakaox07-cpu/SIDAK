@@ -487,15 +487,11 @@ const AssetFormPage: React.FC<AssetFormPageProps> = ({ onSave, onCancel, asset, 
         register: land.register,
         luasTanah: Number(land.luas) || 0,
         tahunPerolehan: Number(land.tahunPerolehan) || todayYear,
-        alamat: land.letakAlamat,
-        letakAlamat: land.letakAlamat,
-        statusHakTanah: land.hak,
-        hak: land.hak,
+        alamat: land.letakAlamat, // Use canonical field name from backend header
+        statusHakTanah: land.hak, // Use canonical field name from backend header
         statusTanah: land.statusTanah,
-        tanggalSertifikat: land.sertifikatTanggal,
-        sertifikatTanggal: land.sertifikatTanggal,
-        nomorSertifikat: land.sertifikatNomor,
-        sertifikatNomor: land.sertifikatNomor,
+        tanggalSertifikat: land.sertifikatTanggal, // Use canonical field name from backend header
+        nomorSertifikat: land.sertifikatNomor, // Use canonical field name from backend header
         penggunaan: land.penggunaan,
         asalUsul: land.asalUsul,
         statusBarang: land.statusBarang,
