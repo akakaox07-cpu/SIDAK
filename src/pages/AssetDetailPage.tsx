@@ -336,11 +336,11 @@ const AssetDetailPage: React.FC<Props> = ({ asset, onBack, onEdit, canEdit }) =>
           <div className="md:col-span-2">
             {/* QR Info Aset */}
             <div className="mb-4 w-full p-4 border rounded-lg bg-gray-50 flex flex-col items-center gap-2">
-              <div className="text-xs font-medium text-gray-600">QR Info Aset</div>
+              <div className="text-sm font-semibold text-gray-700">QR Info Aset</div>
               {qrInfoUrl ? (
-                <img src={qrInfoUrl} alt="QR Info Aset" className="w-32 h-32" />
+                <img src={qrInfoUrl} alt="QR Info Aset" className="w-48 h-48" />
               ) : (
-                <div className="w-32 h-32 flex items-center justify-center text-[10px] text-gray-400">QR tidak tersedia</div>
+                <div className="w-48 h-48 flex items-center justify-center text-xs text-gray-400">QR tidak tersedia</div>
               )}
               <div className="text-xs text-center text-gray-600 mt-1 px-2">
                 <div className="font-medium">{asset.namaBarang}</div>
