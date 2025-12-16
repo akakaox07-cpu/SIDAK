@@ -1,6 +1,7 @@
 # SIDAK - Sistem Informasi Data Aset Kelurahan
 
 Dashboard aplikasi untuk mengelola inventaris aset kelurahan meliputi Barang, Bangunan, dan Tanah.
+Built with React, TypeScript, and Tailwind CSS v4.
 
 ## ✨ Features
 
