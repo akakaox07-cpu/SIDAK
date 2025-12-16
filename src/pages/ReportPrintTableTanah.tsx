@@ -91,26 +91,26 @@ const ReportPrintTableTanah: React.FC<Props> = ({ assets }) => {
   <div className="text-center text-xs text-gray-600 mb-4">Dicetak: {tanggalCetak}</div>
         
         <div className="overflow-x-auto mb-6">
-          <table className="w-full text-[9px] border-collapse border border-gray-400">
+          <table className="w-full text-[10px] border-collapse border border-gray-400">
             <thead>
               <tr className="bg-gray-100">
-                <th rowSpan={2} className="border border-gray-400 px-1 py-2 w-8">No</th>
-                <th rowSpan={2} className="border border-gray-400 px-2 py-2">Kode</th>
-                <th rowSpan={2} className="border border-gray-400 px-1 py-2">Reg</th>
-                <th rowSpan={2} className="border border-gray-400 px-2 py-2">Nama Tanah</th>
-                <th rowSpan={2} className="border border-gray-400 px-2 py-2">Luas<br/>(m²)</th>
-                <th rowSpan={2} className="border border-gray-400 px-1 py-2">Thn</th>
+                <th rowSpan={2} className="border border-gray-400 px-1 py-2 w-[30px]">No</th>
+                <th rowSpan={2} className="border border-gray-400 px-2 py-2 w-[80px]">Kode</th>
+                <th rowSpan={2} className="border border-gray-400 px-1 py-2 w-[40px]">Reg</th>
+                <th rowSpan={2} className="border border-gray-400 px-2 py-2 w-[180px]">Nama Tanah</th>
+                <th rowSpan={2} className="border border-gray-400 px-2 py-2 w-[60px]">Luas<br/>(m²)</th>
+                <th rowSpan={2} className="border border-gray-400 px-1 py-2 w-[40px]">Thn</th>
                 <th colSpan={4} className="border border-gray-400 px-2 py-1">Lokasi & Sertifikat</th>
                 <th colSpan={3} className="border border-gray-400 px-2 py-1">Lainnya</th>
               </tr>
               <tr className="bg-gray-100">
-                <th className="border border-gray-400 px-2 py-1">Alamat</th>
-                <th className="border border-gray-400 px-2 py-1">Hak</th>
-                <th className="border border-gray-400 px-1 py-1">Tgl.Sert</th>
-                <th className="border border-gray-400 px-2 py-1">No.Sert</th>
-                <th className="border border-gray-400 px-2 py-1">Penggunaan</th>
-                <th className="border border-gray-400 px-2 py-1">Asal Usul</th>
-                <th className="border border-gray-400 px-2 py-1">Harga (Rp)</th>
+                <th className="border border-gray-400 px-2 py-1 w-[150px]">Alamat</th>
+                <th className="border border-gray-400 px-2 py-1 w-[70px]">Hak</th>
+                <th className="border border-gray-400 px-1 py-1 w-[70px]">Tgl.Sert</th>
+                <th className="border border-gray-400 px-2 py-1 w-[90px]">No.Sert</th>
+                <th className="border border-gray-400 px-2 py-1 w-[90px]">Penggunaan</th>
+                <th className="border border-gray-400 px-2 py-1 w-[100px]">Asal Usul</th>
+                <th className="border border-gray-400 px-2 py-1 w-[90px]">Harga (Rp)</th>
               </tr>
             </thead>
             <tbody>
