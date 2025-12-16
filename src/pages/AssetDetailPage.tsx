@@ -315,10 +315,17 @@ const AssetDetailPage: React.FC<Props> = ({ asset, onBack, onEdit, canEdit }) =>
                 
                 {/* Jumlah only for Barang (not Tanah/Bangunan) */}
                 {asset.jenisInventaris?.toLowerCase() !== 'tanah' && asset.jenisInventaris?.toLowerCase() !== 'bangunan' && (
-                  <Row label="Jumlah" value={asset.jumlahBarang} />
+                  <>
+                    <Row label="Jumlah" value={asset.jumlahBarang} />
+                    <Row label="Merk/Model" value={asset.merkModel} />
+                    <Row label="No. Seri Pabrik" value={asset.noSeriPabrik} />
+                    <Row label="Ukuran" value={asset.ukuran} />
+                    <Row label="Bahan" value={asset.bahan} />
+                    <Row label="Sumber Perolehan" value={asset.sumberPerolehan} />
+                  </>
                 )}
                 
-                <Row label="Harga Beli" value={asset.hargaBeli || asset.harga} />
+                <Row label="Harga Beli" value={asset.hargaBeli || asset.harga ? `Rp ${(asset.hargaBeli || asset.harga)?.toLocaleString('id-ID')}` : undefined} />
                 <Row label="Keadaan" value={asset.keadaanBarang} />
                 <Row label="Lokasi/Ruangan" value={asset.ruangan || asset.alamat} />
                 {asset.keterangan && <Row label="Keterangan" value={asset.keterangan} />}
