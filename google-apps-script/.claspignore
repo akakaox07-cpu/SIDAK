@@ -1,0 +1,16 @@
+# Clasp ignore file
+# Files to exclude from upload to Apps Script
+
+# Backup files
+Code_OLD.gs
+Code_old_backup.gs
+
+# Documentation
+README_MODULAR.md
+VALIDATION_IMPROVEMENTS.md
+MENU_GUIDE.md
+
+# Git and config
+.git
+.gitignore
+.claspignore

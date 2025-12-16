@@ -1,0 +1,5 @@
+{
+  "name": "Asset Inventory Dashboard",
+  "description": "A modern and responsive dashboard to manage, track, and visualize company assets. It allows users to add, view, edit, and delete assets, and provides key statistics and charts for a quick overview.",
+  "requestFramePermissions": []
+}

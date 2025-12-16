@@ -1,0 +1,17 @@
+export { default as Dashboard } from './Dashboard.tsx';
+export { default as AssetListPage } from './AssetListPage.tsx';
+export { default as AssetFormPage } from './AssetFormPage.tsx';
+export { default as ItemFormPage } from './ItemFormPage.tsx';
+export { default as BuildingFormPage } from './BuildingFormPage.tsx';
+export { default as LandFormPage } from './LandFormPage.tsx';
+export { default as AssetDetailPage } from './AssetDetailPage.tsx';
+export { default as AssetPrintPage } from './AssetPrintPage.tsx';
+export { default as LoginPage } from './LoginPage.tsx';
+export { default as ReportPage } from './ReportPage.tsx';
+export { default as SettingsPage } from './SettingsPage.tsx';
+export { default as ReportPrintTableAll } from './ReportPrintTableAll.tsx';
+export { default as ReportPrintDetailAll } from './ReportPrintDetailAll.tsx';
+export { default as ReportPrintTableBarang } from './ReportPrintTableBarang.tsx';
+export { default as ReportPrintTableTanah } from './ReportPrintTableTanah.tsx';
+export { default as ReportPrintTableBangunan } from './ReportPrintTableBangunan.tsx';
+export { default as ReportPrintKIR } from './ReportPrintKIR.tsx';

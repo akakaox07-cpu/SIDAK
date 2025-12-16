@@ -1,0 +1,46 @@
+import { Unit } from '../types';
+
+export const unitOptions: Unit[] = [
+  'Kelurahan Babakan',
+  'Balai Warga RW 001',
+  'Balai Warga RW 002',
+  'Balai Warga RW 003',
+  'Balai Warga RW 004',
+  'Balai Warga RW 005',
+  'Balai Warga RW 006',
+  'Balai Warga RW 007',
+  'Balai Warga RW 008',
+  'Balai Warga RW 009',
+  'Balai Warga RW 010',
+  'Balai Warga RW 011',
+  'Balai Warga RW 012',
+];
+
+export const ruanganOptions: Record<Unit, string[]> = {
+  'Kelurahan Babakan': [
+    'Staf',
+    'Pelayanan',
+    'Aula',
+    'Rapat',
+    'Pos',
+    'Kasi Pemberdayaan Masyarakat',
+    'Kasi Trantib',
+    'Kasi Pemerintahan',
+    'Dapur',
+    'TP. PKK',
+    'Taman Baca',
+    'Lainnya',
+  ],
+  'Balai Warga RW 001': ['Gedung Balai Warga', 'Gudang', 'Halaman', 'Lainnya'],
+  'Balai Warga RW 002': ['Gedung Balai Warga', 'Gudang', 'Halaman', 'Lainnya'],
+  'Balai Warga RW 003': ['Gedung Balai Warga', 'Gudang', 'Halaman', 'Lainnya'],
+  'Balai Warga RW 004': ['Gedung Balai Warga', 'Gudang', 'Halaman', 'Lainnya'],
+  'Balai Warga RW 005': ['Gedung Balai Warga', 'Gudang', 'Halaman', 'Lainnya'],
+  'Balai Warga RW 006': ['Gedung Balai Warga', 'Gudang', 'Halaman', 'Lainnya'],
+  'Balai Warga RW 007': ['Gedung Balai Warga', 'Gudang', 'Halaman', 'Lainnya'],
+  'Balai Warga RW 008': ['Gedung Balai Warga', 'Gudang', 'Halaman', 'Lainnya'],
+  'Balai Warga RW 009': ['Gedung Balai Warga', 'Gudang', 'Halaman', 'Lainnya'],
+  'Balai Warga RW 010': ['Gedung Balai Warga', 'Gudang', 'Halaman', 'Lainnya'],
+  'Balai Warga RW 011': ['Gedung Balai Warga', 'Gudang', 'Halaman', 'Lainnya'],
+  'Balai Warga RW 012': ['Gedung Balai Warga', 'Gudang', 'Halaman', 'Lainnya'],
+};
