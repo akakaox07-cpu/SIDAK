@@ -434,10 +434,15 @@ function uploadImage(data) {
     const file = folder.createFile(blob);
     file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
     
+    const fileId = file.getId();
+    // Return thumbnail URL that can be directly embedded in img tags
+    const thumbnailUrl = `https://drive.google.com/thumbnail?id=${fileId}&sz=w2000`;
+    
     return createResponse({
       success: true,
-      url: file.getUrl(),
-      id: file.getId(),
+      url: thumbnailUrl,  // Use thumbnail URL instead of file.getUrl()
+      id: fileId,
+      driveUrl: file.getUrl(),  // Keep original for reference
       message: 'Image uploaded successfully'
     });
   } catch (error) {

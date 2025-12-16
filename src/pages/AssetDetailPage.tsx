@@ -50,16 +50,17 @@ const AssetDetailPage: React.FC<Props> = ({ asset, onBack, onEdit, canEdit }) =>
     }
     
     if (fileId) {
-      // Thumbnail URLs first (no CORS issues, designed for embedding)
-      // Use medium-high resolution for detail view to avoid heavy memory usage
+      // Thumbnail URLs first (most reliable for Google Drive)
+      variants.push(`https://drive.google.com/thumbnail?id=${fileId}&sz=w1600`);
       variants.push(`https://drive.google.com/thumbnail?id=${fileId}&sz=w1200`);
-      variants.push(`https://lh3.googleusercontent.com/d/${fileId}=w1200`);
-      // Direct content URLs (may have CORS in some browsers)
-      variants.push(`https://drive.google.com/uc?id=${fileId}`);
+      variants.push(`https://lh3.googleusercontent.com/d/${fileId}=w1600`);
+      // Direct view URL
       variants.push(`https://drive.google.com/uc?export=view&id=${fileId}`);
     }
     // Original URL as last fallback
-    variants.push(url);
+    if (url && !variants.includes(url)) {
+      variants.push(url);
+    }
     // De-duplicate
     return Array.from(new Set(variants));
   }, [asset.photos]);
@@ -210,18 +211,23 @@ const AssetDetailPage: React.FC<Props> = ({ asset, onBack, onEdit, canEdit }) =>
                     alt={asset.namaBarang}
                     className={`absolute inset-0 w-full h-full ${fillMode === 'cover' ? 'object-cover' : 'object-contain'}`}
                     referrerPolicy="no-referrer"
+                    crossOrigin="anonymous"
                     onError={(e) => {
+                      console.log('Image load error, attempt:', imageAttemptIdx, 'URL:', currentImageUrl);
                       const nextIdx = imageAttemptIdx + 1;
                       if (nextIdx < imageUrlVariants.length) {
+                        console.log('Trying next variant:', imageUrlVariants[nextIdx]);
                         setImageAttemptIdx(nextIdx);
                         setCurrentImageUrl(imageUrlVariants[nextIdx]);
                         setImageLoading(true);
                       } else {
+                        console.log('All variants failed');
                         setImageError(true);
                         setImageLoading(false);
                       }
                     }}
                     onLoad={() => {
+                      console.log('Image loaded successfully:', currentImageUrl);
                       setImageError(false);
                       setImageLoading(false);
                     }}
