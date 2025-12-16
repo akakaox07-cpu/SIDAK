@@ -33,10 +33,11 @@ const AssetDetailCard: React.FC<{
     }
   }, [asset.id]);
 
-  // Compute image URL similar to AssetPrintPage
-  const imageUrl = React.useMemo(() => {
+  // Compute image URL similar to AssetPrintPage (with multiple variants)
+  const imageUrlVariants = React.useMemo(() => {
     const url = asset.photos?.[0] || '';
-    if (!url) return '';
+    const variants: string[] = [];
+    if (!url) return variants;
     
     let fileId = '';
     try {
@@ -51,10 +52,20 @@ const AssetDetailCard: React.FC<{
       if (m) fileId = m[1];
     }
     
-    return fileId 
-      ? `https://drive.google.com/thumbnail?id=${fileId}&sz=w2000`
-      : url;
+    if (fileId) {
+      // Thumbnail URLs first (most reliable for Google Drive)
+      variants.push(`https://drive.google.com/thumbnail?id=${fileId}&sz=w2000`);
+      variants.push(`https://drive.google.com/thumbnail?id=${fileId}&sz=w1600`);
+      variants.push(`https://lh3.googleusercontent.com/d/${fileId}=w1600`);
+      variants.push(`https://drive.google.com/uc?export=view&id=${fileId}`);
+    }
+    if (url && !variants.includes(url)) {
+      variants.push(url);
+    }
+    return Array.from(new Set(variants));
   }, [asset.photos]);
+
+  const imageUrl = imageUrlVariants[0] || '';
 
   // Call onImageLoad if no image
   useEffect(() => {

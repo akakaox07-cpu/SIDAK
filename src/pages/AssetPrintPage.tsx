@@ -9,10 +9,13 @@ interface Props { asset: Asset }
 const AssetPrintPage: React.FC<Props> = ({ asset }) => {
   const [qrLink, setQrLink] = useState<string | null>(null);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const [readyToPrint, setReadyToPrint] = useState(false);
   const [showTools, setShowTools] = useState(true);
   const [signLeft, setSignLeft] = useState<{ jabatan: string; nama: string; nip: string }>({ jabatan: '', nama: '', nip: '' });
   const [signRight, setSignRight] = useState<{ jabatan: string; nama: string; nip: string }>({ jabatan: '', nama: '', nip: '' });
+  const [currentImageUrl, setCurrentImageUrl] = useState<string | undefined>(undefined);
+  const [imageAttemptIdx, setImageAttemptIdx] = useState(0);
 
   const detailUrl = useMemo(() => {
     try {
@@ -37,6 +40,18 @@ const AssetPrintPage: React.FC<Props> = ({ asset }) => {
     }
   }, [qrLink, imageLoaded, asset.photos]);
 
+  // Auto ready after timeout to prevent infinite loading
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!readyToPrint) {
+        console.log('Print timeout reached, forcing ready state');
+        setReadyToPrint(true);
+      }
+    }, 5000); // 5 second timeout
+
+    return () => clearTimeout(timer);
+  }, [readyToPrint]);
+
   // No auto-print. We provide a floating Print button (and users can press Ctrl+P).
 
   const koordinat = asset.latitude && asset.longitude ? `${asset.latitude}, ${asset.longitude}` : '-';
@@ -44,10 +59,11 @@ const AssetPrintPage: React.FC<Props> = ({ asset }) => {
   const tanggalCetak = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
   const lokasi = 'Babakan';
 
-  // Compute alternative Google Drive URL variants for resilient loading
-  const imageUrl = useMemo(() => {
+  // Compute alternative Google Drive URL variants for resilient loading (same as AssetDetailPage)
+  const imageUrlVariants = useMemo(() => {
     const url = asset.photos?.[0] || '';
-    if (!url) return '';
+    const variants: string[] = [];
+    if (!url) return variants;
     
     // Try to extract fileId
     let fileId = '';
@@ -63,12 +79,28 @@ const AssetPrintPage: React.FC<Props> = ({ asset }) => {
       if (m) fileId = m[1];
     }
     
-    // Use Google's thumbnail/proxy URL which allows embedding without CORS issues
-    // Use higher resolution for print so image can cover the frame without pixelation
-    return fileId 
-      ? `https://drive.google.com/thumbnail?id=${fileId}&sz=w2000`
-      : url;
+    if (fileId) {
+      // Thumbnail URLs first (most reliable for Google Drive)
+      variants.push(`https://drive.google.com/thumbnail?id=${fileId}&sz=w2000`);
+      variants.push(`https://drive.google.com/thumbnail?id=${fileId}&sz=w1600`);
+      variants.push(`https://lh3.googleusercontent.com/d/${fileId}=w1600`);
+      // Direct view URL
+      variants.push(`https://drive.google.com/uc?export=view&id=${fileId}`);
+    }
+    // Original URL as last fallback
+    if (url && !variants.includes(url)) {
+      variants.push(url);
+    }
+    return Array.from(new Set(variants));
   }, [asset.photos]);
+
+  // Reset image state when asset changes
+  useEffect(() => {
+    setImageError(false);
+    setImageLoaded(false);
+    setImageAttemptIdx(0);
+    setCurrentImageUrl(imageUrlVariants[0]);
+  }, [asset.id, imageUrlVariants]);
 
   return (
     <div className="min-h-screen bg-gray-300 p-8 print:p-0">
@@ -167,20 +199,44 @@ const AssetPrintPage: React.FC<Props> = ({ asset }) => {
         <div className="text-center text-xs text-gray-600 mb-6 print:mb-3">Dicetak: {tanggalCetak}</div>
         <div className="flex flex-row gap-6 mb-6 print:gap-3 print:mb-4">
           <div className="flex-1 bg-gray-50 border border-gray-200 rounded-lg relative overflow-hidden p-0 min-h-[300px] max-h-[300px] print:min-h-[260px] print:max-h-[260px]">
-            {imageUrl ? (
+            {currentImageUrl && !imageError ? (
               <img 
-                src={imageUrl} 
+                src={currentImageUrl} 
                 alt={asset.namaBarang} 
                 className="absolute inset-0 w-full h-full object-cover"
                 referrerPolicy="no-referrer"
-                onLoad={() => setImageLoaded(true)}
+                crossOrigin="anonymous"
+                onLoad={() => {
+                  console.log('Print image loaded successfully:', currentImageUrl);
+                  setImageError(false);
+                  setImageLoaded(true);
+                }}
                 onError={() => {
-                  console.error('Print image failed to load:', imageUrl);
-                  setImageLoaded(true); // Continue anyway
+                  console.log('Print image load error, attempt:', imageAttemptIdx, 'URL:', currentImageUrl);
+                  const nextIdx = imageAttemptIdx + 1;
+                  if (nextIdx < imageUrlVariants.length) {
+                    console.log('Trying next variant:', imageUrlVariants[nextIdx]);
+                    setImageAttemptIdx(nextIdx);
+                    setCurrentImageUrl(imageUrlVariants[nextIdx]);
+                  } else {
+                    console.log('All variants failed for print');
+                    setImageError(true);
+                    setImageLoaded(true); // Mark as loaded anyway to not block print
+                  }
                 }}
               />
+            ) : imageError ? (
+              <div className="flex items-center justify-center h-full">
+                <span className="text-xs text-red-500">Gambar tidak dapat dimuat</span>
+              </div>
+            ) : asset.photos?.[0] ? (
+              <div className="flex items-center justify-center h-full">
+                <span className="text-xs text-gray-400 animate-pulse">Memuat gambar...</span>
+              </div>
             ) : (
-              <span className="text-[10px] text-gray-400">Tidak ada gambar</span>
+              <div className="flex items-center justify-center h-full">
+                <span className="text-xs text-gray-400">Tidak ada gambar</span>
+              </div>
             )}
           </div>
           <div className="w-[150px] flex flex-col items-center gap-2 border rounded-lg p-3 bg-white flex-shrink-0">
