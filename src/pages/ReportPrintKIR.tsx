@@ -126,13 +126,15 @@ const ReportPrintKIR: React.FC<ReportPrintKIRProps> = ({ assets }) => {
             <div className="space-y-3 mb-4">
               <div>
                 <label className="block text-xs font-medium text-gray-700 mb-1">Unit</label>
-                <input
-                  type="text"
+                <select
                   value={selectedUnit}
                   onChange={(e) => setSelectedUnit(e.target.value)}
                   className="w-full px-2 py-1.5 text-sm border border-gray-300 rounded-md"
-                  placeholder="Nama Unit"
-                />
+                >
+                  {unitOptions.map(unit => (
+                    <option key={unit} value={unit}>{unit}</option>
+                  ))}
+                </select>
               </div>
               <div>
                 <label className="block text-xs font-medium text-gray-700 mb-1">Ruangan</label>
