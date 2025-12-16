@@ -295,8 +295,8 @@ const AssetDetailPage: React.FC<Props> = ({ asset, onBack, onEdit, canEdit }) =>
             {(asset.jenisInventaris?.toLowerCase() === 'tanah' || asset.jenisInventaris?.toLowerCase() === 'bangunan') && asset.latitude && asset.longitude && (
               <div className="mt-4">
                 <MapViewer
-                  latitude={asset.latitude}
-                  longitude={asset.longitude}
+                  latitude={parseFloat(asset.latitude)}
+                  longitude={parseFloat(asset.longitude)}
                   address={asset.alamat}
                 />
               </div>
