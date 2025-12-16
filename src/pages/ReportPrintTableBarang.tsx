@@ -98,16 +98,18 @@ const ReportPrintTableBarang: React.FC<Props> = ({ assets }) => {
             <thead>
               <tr className="bg-gray-100">
                 <th className="border border-gray-400 px-2 py-2">No</th>
-                <th className="border border-gray-400 px-2 py-2">No. Kode Barang</th>
+                <th className="border border-gray-400 px-2 py-2">Kode Barang</th>
                 <th className="border border-gray-400 px-2 py-2">Nama Barang</th>
-                <th className="border border-gray-400 px-2 py-2">Jenis Inventaris</th>
+                <th className="border border-gray-400 px-2 py-2">Jenis</th>
                 <th className="border border-gray-400 px-2 py-2">Merk/Model</th>
-                <th className="border border-gray-400 px-2 py-2">Ruangan</th>
-                <th className="border border-gray-400 px-2 py-2">Tahun Pembuatan</th>
+                <th className="border border-gray-400 px-2 py-2">No. Seri</th>
+                <th className="border border-gray-400 px-2 py-2">Ukuran</th>
+                <th className="border border-gray-400 px-2 py-2">Bahan</th>
+                <th className="border border-gray-400 px-2 py-2">Tahun</th>
                 <th className="border border-gray-400 px-2 py-2">Jumlah</th>
                 <th className="border border-gray-400 px-2 py-2">Harga Beli (Rp)</th>
-                <th className="border border-gray-400 px-2 py-2">Keadaan Barang</th>
-                <th className="border border-gray-400 px-2 py-2">Sumber Perolehan</th>
+                <th className="border border-gray-400 px-2 py-2">Ruangan</th>
+                <th className="border border-gray-400 px-2 py-2">Keadaan</th>
                 <th className="border border-gray-400 px-2 py-2">Keterangan</th>
               </tr>
             </thead>
@@ -115,16 +117,18 @@ const ReportPrintTableBarang: React.FC<Props> = ({ assets }) => {
               {rows.map((a, idx) => (
                 <tr key={a.id} className="hover:bg-gray-50">
                   <td className="border border-gray-400 px-2 py-1 text-center">{idx + 1}</td>
-                  <td className="border border-gray-400 px-2 py-1">{(a as any).noKodeBarang || ''}</td>
+                  <td className="border border-gray-400 px-2 py-1">{a.noKodeBarang || a.kodeBarang || '-'}</td>
                   <td className="border border-gray-400 px-2 py-1">{a.namaBarang}</td>
                   <td className="border border-gray-400 px-2 py-1">{a.jenisInventaris}</td>
-                  <td className="border border-gray-400 px-2 py-1">{(a as any).merkModel || '-'}</td>
-                  <td className="border border-gray-400 px-2 py-1">{a.ruangan || '-'}</td>
+                  <td className="border border-gray-400 px-2 py-1">{a.merkModel || '-'}</td>
+                  <td className="border border-gray-400 px-2 py-1">{a.noSeriPabrik || '-'}</td>
+                  <td className="border border-gray-400 px-2 py-1">{a.ukuran || '-'}</td>
+                  <td className="border border-gray-400 px-2 py-1">{a.bahan || '-'}</td>
                   <td className="border border-gray-400 px-2 py-1 text-center">{a.tahunPembuatan || '-'}</td>
                   <td className="border border-gray-400 px-2 py-1 text-center">{a.jumlahBarang ?? '-'}</td>
-                  <td className="border border-gray-400 px-2 py-1 text-right">{a.hargaBeli ? a.hargaBeli.toLocaleString('id-ID') : '-'}</td>
+                  <td className="border border-gray-400 px-2 py-1 text-right">{a.hargaBeli || a.harga ? (a.hargaBeli || a.harga).toLocaleString('id-ID') : '-'}</td>
+                  <td className="border border-gray-400 px-2 py-1">{a.ruangan || '-'}</td>
                   <td className="border border-gray-400 px-2 py-1">{a.keadaanBarang || '-'}</td>
-                  <td className="border border-gray-400 px-2 py-1">{(a as any).sumberPerolehan || '-'}</td>
                   <td className="border border-gray-400 px-2 py-1">{a.keterangan || '-'}</td>
                 </tr>
               ))}
@@ -148,8 +152,8 @@ const ReportPrintTableBarang: React.FC<Props> = ({ assets }) => {
               <td className="text-center text-gray-700 min-h-[18px]">{signRight.jabatan || ' '}</td>
             </tr>
             <tr>
-              <td className="h-[80px] print:h-[70px]"></td>
-              <td className="h-[80px] print:h-[70px]"></td>
+              <td className="h-20 print:h-[70px]"></td>
+              <td className="h-20 print:h-[70px]"></td>
             </tr>
             <tr>
               <td className="text-center align-top">

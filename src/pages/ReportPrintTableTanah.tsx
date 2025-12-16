@@ -94,26 +94,18 @@ const ReportPrintTableTanah: React.FC<Props> = ({ assets }) => {
             <thead>
               <tr className="bg-gray-100">
                 <th className="border border-gray-400 px-2 py-2">No</th>
-                <th className="border border-gray-400 px-2 py-2">Kode Barang</th>
+                <th className="border border-gray-400 px-2 py-2">Kode</th>
                 <th className="border border-gray-400 px-2 py-2">Register</th>
-                <th className="border border-gray-400 px-2 py-2">Nama Barang</th>
+                <th className="border border-gray-400 px-2 py-2">Nama Tanah</th>
                 <th className="border border-gray-400 px-2 py-2">Luas (m²)</th>
-                <th className="border border-gray-400 px-2 py-2">Tahun Perolehan</th>
-                <th className="border border-gray-400 px-2 py-2">Letak/Alamat</th>
-                <th className="border border-gray-400 px-2 py-2">Hak</th>
-                <th className="border border-gray-400 px-2 py-2">Status Tanah</th>
-                <th className="border border-gray-400 px-2 py-2">Tanggal Sertifikat</th>
-                <th className="border border-gray-400 px-2 py-2">Nomor Sertifikat</th>
+                <th className="border border-gray-400 px-2 py-2">Tahun</th>
+                <th className="border border-gray-400 px-2 py-2">Alamat</th>
+                <th className="border border-gray-400 px-2 py-2">Hak Tanah</th>
+                <th className="border border-gray-400 px-2 py-2">Tgl. Sertifikat</th>
+                <th className="border border-gray-400 px-2 py-2">No. Sertifikat</th>
                 <th className="border border-gray-400 px-2 py-2">Penggunaan</th>
                 <th className="border border-gray-400 px-2 py-2">Asal Usul</th>
                 <th className="border border-gray-400 px-2 py-2">Harga (Rp)</th>
-                <th className="border border-gray-400 px-2 py-2">Kondisi</th>
-                <th className="border border-gray-400 px-2 py-2">Status Barang</th>
-                <th className="border border-gray-400 px-2 py-2">Tgl. Buku</th>
-                <th className="border border-gray-400 px-2 py-2">No. BAST</th>
-                <th className="border border-gray-400 px-2 py-2">Tgl. BAST</th>
-                <th className="border border-gray-400 px-2 py-2">ID Penerimaan</th>
-                <th className="border border-gray-400 px-2 py-2">Status Aset</th>
                 <th className="border border-gray-400 px-2 py-2">Keterangan</th>
               </tr>
             </thead>
@@ -121,26 +113,18 @@ const ReportPrintTableTanah: React.FC<Props> = ({ assets }) => {
               {rows.map((a, idx) => (
                 <tr key={a.id} className="hover:bg-gray-50">
                   <td className="border border-gray-400 px-2 py-1 text-center">{idx + 1}</td>
-                  <td className="border border-gray-400 px-2 py-1">{a.kodeBarang || a.noKodeBarang || a.kodeTanah || ''}</td>
+                  <td className="border border-gray-400 px-2 py-1">{a.kodeBarang || a.noKodeBarang || '-'}</td>
                   <td className="border border-gray-400 px-2 py-1">{a.register || '-'}</td>
                   <td className="border border-gray-400 px-2 py-1">{a.namaBarang}</td>
                   <td className="border border-gray-400 px-2 py-1 text-right">{a.luasTanah ? a.luasTanah.toLocaleString('id-ID') : '-'}</td>
                   <td className="border border-gray-400 px-2 py-1 text-center">{a.tahunPerolehan || '-'}</td>
-                  <td className="border border-gray-400 px-2 py-1">{a.letakAlamat || a.alamat || '-'}</td>
-                  <td className="border border-gray-400 px-2 py-1">{a.hak || a.statusHakTanah || '-'}</td>
-                  <td className="border border-gray-400 px-2 py-1">{a.statusTanah || '-'}</td>
-                  <td className="border border-gray-400 px-2 py-1">{a.sertifikatTanggal || a.tanggalSertifikat || '-'}</td>
-                  <td className="border border-gray-400 px-2 py-1">{a.sertifikatNomor || a.nomorSertifikat || '-'}</td>
+                  <td className="border border-gray-400 px-2 py-1">{a.alamat || '-'}</td>
+                  <td className="border border-gray-400 px-2 py-1">{a.statusHakTanah || '-'}</td>
+                  <td className="border border-gray-400 px-2 py-1 text-center">{a.tanggalSertifikat || '-'}</td>
+                  <td className="border border-gray-400 px-2 py-1">{a.nomorSertifikat || '-'}</td>
                   <td className="border border-gray-400 px-2 py-1">{a.penggunaan || '-'}</td>
-                  <td className="border border-gray-400 px-2 py-1">{a.asalUsul || a.sumberPerolehan || '-'}</td>
+                  <td className="border border-gray-400 px-2 py-1">{a.asalUsul || '-'}</td>
                   <td className="border border-gray-400 px-2 py-1 text-right">{a.harga ? a.harga.toLocaleString('id-ID') : '-'}</td>
-                  <td className="border border-gray-400 px-2 py-1">{a.kondisi || '-'}</td>
-                  <td className="border border-gray-400 px-2 py-1">{a.statusBarang || '-'}</td>
-                  <td className="border border-gray-400 px-2 py-1">{a.tglBuku || '-'}</td>
-                  <td className="border border-gray-400 px-2 py-1">{a.noBAST || '-'}</td>
-                  <td className="border border-gray-400 px-2 py-1">{a.tglBAST || '-'}</td>
-                  <td className="border border-gray-400 px-2 py-1">{a.idPenerimaan || '-'}</td>
-                  <td className="border border-gray-400 px-2 py-1">{a.statusAset || '-'}</td>
                   <td className="border border-gray-400 px-2 py-1">{a.keterangan || '-'}</td>
                 </tr>
               ))}
@@ -164,8 +148,8 @@ const ReportPrintTableTanah: React.FC<Props> = ({ assets }) => {
               <td className="text-center text-gray-700 min-h-[18px]">{signRight.jabatan || ' '}</td>
             </tr>
             <tr>
-              <td className="h-[80px] print:h-[70px]"></td>
-              <td className="h-[80px] print:h-[70px]"></td>
+              <td className="h-20 print:h-[70px]"></td>
+              <td className="h-20 print:h-[70px]"></td>
             </tr>
             <tr>
               <td className="text-center align-top">
