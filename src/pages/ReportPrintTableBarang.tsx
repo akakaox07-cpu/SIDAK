@@ -31,7 +31,7 @@ const ReportPrintTableBarang: React.FC<Props> = ({ assets }) => {
   const lokasi = 'Babakan';
 
   return (
-    <div className="min-h-screen bg-gray-300 p-8 print:p-0">
+    <div className="bg-gray-300 p-8 print:p-0 print:bg-white">
       {/* Top-right controls */}
       <div className="fixed top-6 right-6 z-50 print:hidden">
         <div className="flex flex-col items-end">
@@ -88,7 +88,7 @@ const ReportPrintTableBarang: React.FC<Props> = ({ assets }) => {
       </div>
 
       {/* A4 Landscape Page */}
-      <div className="mx-auto bg-white w-[297mm] min-h-[210mm] shadow-lg rounded-lg p-8 box-border print:shadow-none print:rounded-none print:p-4">
+      <div className="mx-auto bg-white w-[297mm] shadow-lg rounded-lg p-8 box-border print:shadow-none print:rounded-none print:p-4 print:w-full">
   <h1 className="text-center text-lg font-semibold mb-1">Inventaris Barang</h1>
   <div className="text-center text-sm font-medium mb-1">{rows[0]?.unit || ''}</div>
   <div className="text-center text-xs text-gray-600 mb-4">Dicetak: {tanggalCetak}</div>
