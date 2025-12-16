@@ -161,7 +161,7 @@ export const MapPicker: React.FC<MapPickerProps> = ({
         </MapContainer>
         {/* Fixed center pin overlay - Google Maps style */}
         {!readonly && (
-          <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-full z-[1000]">
+          <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-full z-1000">
             <svg 
               width="48" 
               height="48" 
