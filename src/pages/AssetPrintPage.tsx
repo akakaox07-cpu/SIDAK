@@ -200,12 +200,11 @@ const AssetPrintPage: React.FC<Props> = ({ asset }) => {
         <div className="flex flex-row gap-6 mb-6 print:gap-3 print:mb-4">
           <div className="flex-1 bg-gray-50 border border-gray-200 rounded-lg relative overflow-hidden p-0 min-h-[300px] max-h-[300px] print:min-h-[260px] print:max-h-[260px]">
             {currentImageUrl && !imageError ? (
-              <img 
+              <img
                 src={currentImageUrl} 
-                alt={asset.namaBarang} 
+                alt={asset.namaBarang}
                 className="absolute inset-0 w-full h-full object-cover"
                 referrerPolicy="no-referrer"
-                crossOrigin="anonymous"
                 onLoad={() => {
                   console.log('Print image loaded successfully:', currentImageUrl);
                   setImageError(false);

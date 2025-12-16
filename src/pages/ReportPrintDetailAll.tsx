@@ -94,7 +94,6 @@ const AssetDetailCard: React.FC<{
               alt={asset.namaBarang} 
               className="absolute inset-0 w-full h-full object-cover"
               referrerPolicy="no-referrer"
-              crossOrigin="anonymous"
               onLoad={() => {
                 console.log('Image loaded:', asset.namaBarang);
                 if (!imageHandled) {

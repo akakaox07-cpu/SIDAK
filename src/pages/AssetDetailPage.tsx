@@ -211,7 +211,6 @@ const AssetDetailPage: React.FC<Props> = ({ asset, onBack, onEdit, canEdit }) =>
                     alt={asset.namaBarang}
                     className={`absolute inset-0 w-full h-full ${fillMode === 'cover' ? 'object-cover' : 'object-contain'}`}
                     referrerPolicy="no-referrer"
-                    crossOrigin="anonymous"
                     onError={(e) => {
                       console.log('Image load error, attempt:', imageAttemptIdx, 'URL:', currentImageUrl);
                       const nextIdx = imageAttemptIdx + 1;
