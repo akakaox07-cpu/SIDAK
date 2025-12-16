@@ -27,7 +27,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_API_URL: https://script.google.com/macros/s/AKfycbz0rMw8doLaO2UCsXTiez7O6xTdHakbi6KV2uNDyfFdquk9QPzXEHM8rsJq8k5ZHed4/exec
+          VITE_API_URL: https://script.google.com/macros/s/AKfycbz5jO9-3bUXFtbXbuAwRQfMc_agEjKp6wRoRj3_vBKkzM8H9DlwXJdmkBYSr4ZN_UlR/exec
 
       - name: Add .nojekyll file
         run: touch dist/.nojekyll
