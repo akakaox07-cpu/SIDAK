@@ -53,16 +53,30 @@ export const MapViewer: React.FC<MapViewerProps> = ({
       )}
 
       <div className="relative w-full h-48 bg-gray-100 rounded-lg overflow-hidden border border-gray-200">
-        <iframe
-          src={`https://www.google.com/maps?q=${lat},${lng}&z=15&output=embed`}
-          className="w-full h-full border-0"
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          title="Location Map"
-        />
+        {/* OpenStreetMap using Leaflet */}
+        <div 
+          className="w-full h-full cursor-pointer hover:opacity-90 transition-opacity"
+          onClick={openInGoogleMaps}
+        >
+          {/* Static map image using OpenStreetMap tiles */}
+          <img
+            src={`https://www.openstreetmap.org/export/embed.html?bbox=${lng-0.01},${lat-0.01},${lng+0.01},${lat+0.01}&layer=mapnik&marker=${lat},${lng}`}
+            alt="Map"
+            className="hidden"
+          />
+          
+          {/* Fallback: Static map image */}
+          <iframe
+            src={`https://maps.google.com/maps?q=${lat},${lng}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+            className="w-full h-full border-0"
+            loading="lazy"
+            title="Location Map"
+            sandbox="allow-scripts allow-same-origin"
+          />
+        </div>
 
         {/* Coordinates badge */}
-        <div className="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded shadow-md text-xs font-mono">
+        <div className="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded shadow-md text-xs font-mono pointer-events-none">
           <div className="text-gray-700">
             {lat.toFixed(6)}, {lng.toFixed(6)}
           </div>
